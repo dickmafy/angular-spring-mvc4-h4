@@ -1,32 +1,30 @@
 package net.codejava.spring.generic;
 
 import java.io.Serializable;
-import java.util.List;
+import java.lang.reflect.ParameterizedType;
 
-import javax.annotation.PostConstruct;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import sun.print.resources.serviceui;
-
 @Repository
 @Transactional
-public class AbstractHibernateDao<T extends Serializable> {
+public abstract class AbstractHibernateDao<T extends Serializable> {
 
-	private Class<T> clazz;
+	protected Class<T>	clazz;
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	public final void setClazz(Class<T> clazzToSet) {
-		this.clazz = clazzToSet;
-	}
-
+	
+	
+	public AbstractHibernateDao(Class<T> clazz){
+        this.clazz = clazz;
+    }
+	
 	private Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
