@@ -322,6 +322,7 @@
 					    <ul class="demo-sidebar hide-on-tablets">
 					        <li><a href="#/todo">Todo List</a></li>
 					        <li><a href="#/usuario">Usuario</a></li>
+					        <li><a href="#/perfil">Perfil</a></li>
 					    </ul>
 						</div>
                         <li>
@@ -509,13 +510,7 @@
 		<script src="resources/js/services.js"></script>
 		<script src="resources/js/controllers/TodoController.js"></script>
 		<script src="resources/js/controllers/UsuarioController.js"></script>
-		<script src="resources/js/controllers/TableController.js"></script>
-		<script src="resources/js/controllers/FileController.js"></script>
-		<script src="resources/js/controllers/EditorController.js"></script>
-		<script src="resources/js/controllers/RestController.js"></script>
-		<script src="resources/js/controllers/ForceController.js"></script>
-		<script src="resources/js/controllers/D3Controller.js"></script>
-		<script src="resources/js/controllers/TabsController.js"></script>
+		<script src="resources/js/controllers/PerfilController.js"></script>
 		<script src="resources/js/filters.js"></script>
 		<script src="resources/js/directives.js"></script>
 		

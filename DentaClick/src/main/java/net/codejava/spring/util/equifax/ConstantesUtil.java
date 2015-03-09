@@ -4,6 +4,7 @@ public class ConstantesUtil {
 
 	//LAYOUT'S
 	public static final String LAYOUT_USUARIO = "usuario";
+	public static final String LAYOUT_PERFIL = "perfil";
 	
 	public static final String OPTION_SELECT = "--SELECCIONAR--";
 
@@ -125,6 +126,7 @@ public class ConstantesUtil {
 
 	public static final String COD_TIPO_PERSONA_NATURAL = "1";
 	public static final String COD_TIPO_PERSONA_JURIDICA = "2";
+	public static final String	POSTCONSTRUCT	= "Init method after properties are set";
 
 	public static class EstDocumentoMoroso {
 

@@ -15,6 +15,10 @@ App.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'usuario/layout',
         controller: UsuarioController
     });
+    $routeProvider.when('/perfil', {
+        templateUrl: 'bean/layout',
+        controller: PerfilController
+    });
     
     $routeProvider.otherwise({redirectTo: '/'});
 }]);

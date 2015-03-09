@@ -2,6 +2,7 @@ package net.codejava.spring.controller;
 
 import net.codejava.spring.dao.UserDAO;
 import net.codejava.spring.generic.AbstractHibernateDao;
+import net.codejava.spring.model.Perfil;
 import net.codejava.spring.model.Usuario;
 import net.codejava.spring.util.equifax.ConstantesUtil;
 
@@ -26,13 +27,16 @@ public class UsuarioController extends AbstractHibernateDao<Usuario> {
 	@Autowired
 	private UserDAO			dao;
 
-	@Autowired
-	SessionFactory			sessionFactory;
-
+	
 	@PostConstruct
 	public void init() {
-		LOG.info("UsuarioController");
+		LOG.info("UsuarioController - " + ConstantesUtil.POSTCONSTRUCT );
 	}
+	
+	public UsuarioController() {
+		super(Usuario.class);
+	}
+	
 
 	@RequestMapping(value = "/list.json", method = RequestMethod.GET)
 	public @ResponseBody
