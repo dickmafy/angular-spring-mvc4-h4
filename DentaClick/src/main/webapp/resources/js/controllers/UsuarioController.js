@@ -24,16 +24,16 @@ var UsuarioController = function($scope, $http) {
 	};
 
 	$scope.reset = function() {
-		$scope.bean.correo = '';
-		$scope.bean.nombre = '';
+		$scope.bean.nomb = '';
 		$scope.editMode = false;
 	};
 
 	$scope.add = function(bean) {
 		$http.post('usuario/add', bean).success(function(response) {
 			$scope.list();
-			$scope.bean.correo = '';
-			$scope.bean.contrasena = '';
+			$scope.bean.corre = '';
+			$scope.bean.nomb = '';
+			$scope.bean.pkPerfil = '';
 			console.log('Correcto' + bean);
 			$scope.setSuccess('exito al grabar.');
 		}).error(function(response) {
@@ -45,8 +45,9 @@ var UsuarioController = function($scope, $http) {
 	$scope.update = function(bean) {
 		$http.post('usuario/update/', bean).success(
 				function(response) {
-					$scope.bean.correo = '';
-					$scope.bean.nombre = '';
+					$scope.bean.corre = '';
+					$scope.bean.nomb = '';
+					$scope.bean.pkPerfil = '';
 					$scope.list();
 					$scope.editMode = false;
 					$scope.setSuccess('exito al actualizar.');

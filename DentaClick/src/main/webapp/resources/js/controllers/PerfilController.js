@@ -4,28 +4,28 @@ var PerfilController = function($scope, $http) {
 	$scope.position = '';
 	$scope.add = "PerfilController";
 	
+	$scope.reset = function() {
+		//$scope.bean.nomb = '';
+		$scope.editMode = false;
+	};
 	
 	$scope.list = function() {
 		$http.get('bean/list.json').success(function(response) {
 			$scope.beanList = response;
+			$scope.reset();
 		}).error(function(response) {
 			$scope.setError('Error en List');
 		});;
 	};
 
-	$scope.reset = function() {
-		$scope.bean.descripcion = '';
-		$scope.bean.nombre = '';
-		$scope.editMode = false;
-	};
+	
 
 	$scope.add = function(bean) {
 		$http.post('bean/add', bean).success(function(response) {
 			$scope.list();
-			$scope.bean.descripcion = '';
-			$scope.bean.contrasena = '';
 			console.log('Correcto' + bean);
 			$scope.setSuccess('exito al grabar.');
+			$scope.reset();
 		}).error(function(response) {
 			console.log('Error' + response);
 			$scope.setError('error al ADD');
@@ -35,11 +35,9 @@ var PerfilController = function($scope, $http) {
 	$scope.update = function(bean) {
 		$http.post('bean/update/', bean).success(
 				function(response) {
-					$scope.bean.descripcion = '';
-					$scope.bean.nombre = '';
 					$scope.list();
-					$scope.editMode = false;
 					$scope.setSuccess('exito al actualizar.');
+					$scope.reset();
 				}).error(function(response) {
 			console.log(response);
 		});

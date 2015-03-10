@@ -3,8 +3,6 @@ package net.codejava.spring;
 import java.util.List;
 
 import net.codejava.spring.dao.UserDAO;
-import net.codejava.spring.model.Usuario;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +18,11 @@ public class HomeController {
 	
 	@RequestMapping(value="/")
 	public ModelAndView index() {
-		List<Usuario> listUsers = userDao.list();
+		//List<Usuario> listUsers = userDao.list();
+		//model.addObject("userList", listUsers);
+		//return model;
+		System.out.println("###############################ENTRANDO A HomeController");
 		ModelAndView model = new ModelAndView("index");
-		model.addObject("userList", listUsers);
 		return model;
 	}
 	

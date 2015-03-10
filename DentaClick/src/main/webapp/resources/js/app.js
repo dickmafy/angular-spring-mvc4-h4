@@ -6,17 +6,17 @@ var App = angular.module('AngularSpringApp', ['AngularSpringApp.filters', 'Angul
 
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider', function ($routeProvider) {
-
+	//templateUrl goes to CONTROLLER.JAVA
     $routeProvider.when('/todo', {
         templateUrl: 'todo/layout',
         controller: TodoController
     });
     $routeProvider.when('/usuario', {
-        templateUrl: 'usuario/layout',
+        templateUrl: 'bean/layout',
         controller: UsuarioController
     });
     $routeProvider.when('/perfil', {
-        templateUrl: 'bean/layout',
+        templateUrl: 'bean/layout', 
         controller: PerfilController
     });
     
