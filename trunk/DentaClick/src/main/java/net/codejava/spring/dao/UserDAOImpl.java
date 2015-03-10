@@ -2,8 +2,6 @@ package net.codejava.spring.dao;
 
 import java.util.List;
 
-import net.codejava.spring.model.Usuario;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-	
+	/*
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -37,5 +35,5 @@ public class UserDAOImpl implements UserDAO {
 		//session.flush();
 		
 	}
-
+*/
 }

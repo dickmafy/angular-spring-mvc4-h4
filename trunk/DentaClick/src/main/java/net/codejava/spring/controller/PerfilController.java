@@ -3,7 +3,7 @@ package net.codejava.spring.controller;
 import net.codejava.spring.dao.PerfilDAO;
 import net.codejava.spring.dao.UserDAO;
 import net.codejava.spring.generic.AbstractHibernateDao;
-import net.codejava.spring.model.Perfil;
+import net.codejava.spring.model.SeguridadPerfil;
 import net.codejava.spring.util.equifax.ConstantesUtil;
 
 import org.apache.log4j.Logger;
@@ -21,15 +21,14 @@ import javax.annotation.PostConstruct;
 
 @Controller
 @RequestMapping("/bean")
-public class PerfilController extends AbstractHibernateDao<Perfil> {
+public class PerfilController extends AbstractHibernateDao<SeguridadPerfil> {
 
-	private static Logger	LOG	= Logger.getLogger(PerfilController.class);
+	private static Logger			LOG	= Logger.getLogger(PerfilController.class);
 
-	@Autowired
-	private PerfilDAO		dao;
+	
 
-	private Perfil			bean;
-	private List<Perfil>	beanList;
+	private SeguridadPerfil			bean;
+	private List<SeguridadPerfil>	beanList;
 
 	@PostConstruct
 	public void init() {
@@ -37,16 +36,16 @@ public class PerfilController extends AbstractHibernateDao<Perfil> {
 	}
 
 	public PerfilController() {
-		super(Perfil.class);
+		super(SeguridadPerfil.class);
 	}
 
 	@RequestMapping(value = "/list.json", method = RequestMethod.GET)
 	public @ResponseBody
-	List<Perfil> list() {
+	List<SeguridadPerfil> list() {
 		try {
 			beanList = findAll();
 		} catch (Exception e) {
-			beanList = new ArrayList<Perfil>();
+			beanList = new ArrayList<SeguridadPerfil>();
 		}
 		return beanList;
 
@@ -59,27 +58,27 @@ public class PerfilController extends AbstractHibernateDao<Perfil> {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public @ResponseBody
-	void insert(@RequestBody Perfil bean) {
+	void insert(@RequestBody SeguridadPerfil bean) {
 		save(bean);
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody
-	void delete(@RequestBody Perfil bean) {
+	void delete(@RequestBody SeguridadPerfil bean) {
 		delete(bean);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody
-	void update(@RequestBody Perfil bean) {
+	void update(@RequestBody SeguridadPerfil bean) {
 		update(bean);
 	}
 
-	private Perfil getBean() {
+	private SeguridadPerfil getBean() {
 		return bean;
 	}
 
-	private void setBean(Perfil bean) {
+	private void setBean(SeguridadPerfil bean) {
 		this.bean = bean;
 	}
 

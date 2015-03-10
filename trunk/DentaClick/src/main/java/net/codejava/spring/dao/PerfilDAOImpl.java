@@ -2,8 +2,6 @@ package net.codejava.spring.dao;
 
 import java.util.List;
 
-import net.codejava.spring.model.Usuario;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
