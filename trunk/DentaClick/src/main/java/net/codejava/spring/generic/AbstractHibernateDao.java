@@ -5,15 +5,20 @@ import java.lang.reflect.ParameterizedType;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public abstract class AbstractHibernateDao<T extends Serializable> {
+public abstract class AbstractHibernateDao<T extends Serializable>  {
 
 	protected Class<T>	clazz;
 
@@ -54,9 +59,28 @@ public abstract class AbstractHibernateDao<T extends Serializable> {
 		getSession().merge(entity);
 	}
 
-	public void deleteById(long entityId) {
+	public void deleteById(Long entityId) {
 		T entity = findOne(entityId);
 		delete(entity);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> findAllSort(String clazz) {
+		List<T> list  = (List<T>) getSession().createQuery("from "+ clazz).list();
+		return list;
+		/*List<T> list;
+
+		CriteriaBuilder criteriaBuilder;
+		CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
+
+		Root<T> from = query.from(clazz);
+		query.orderBy(criteriaBuilder.asc(from.get(propiedad1)));
+
+		query.select(from);
+
+		list = em.createQuery(query).setMaxResults(maxRowReturn).getResultList();*
+		return list;*/
+	}
+	
 
 }

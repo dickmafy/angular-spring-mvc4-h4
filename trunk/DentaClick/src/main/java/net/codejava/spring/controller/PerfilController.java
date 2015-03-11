@@ -1,17 +1,11 @@
 package net.codejava.spring.controller;
 
-import net.codejava.spring.dao.PerfilDAO;
-import net.codejava.spring.dao.UserDAO;
 import net.codejava.spring.generic.AbstractHibernateDao;
 import net.codejava.spring.model.SeguridadPerfil;
 import net.codejava.spring.util.equifax.ConstantesUtil;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,8 +18,6 @@ import javax.annotation.PostConstruct;
 public class PerfilController extends AbstractHibernateDao<SeguridadPerfil> {
 
 	private static Logger			LOG	= Logger.getLogger(PerfilController.class);
-
-	
 
 	private SeguridadPerfil			bean;
 	private List<SeguridadPerfil>	beanList;

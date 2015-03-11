@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -49,8 +50,7 @@ public class SeguridadUsuario implements Serializable {
 	private String				nomb;
 	private String				pass;
 
-	@XmlAttribute
-	@XmlTransient
+	@XmlElement
 	@JoinColumn(name = "fkPerfil", referencedColumnName = "pkPerfil")
 	@ManyToOne
 	private SeguridadPerfil		fkPerfil;

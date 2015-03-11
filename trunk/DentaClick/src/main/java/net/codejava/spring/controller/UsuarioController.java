@@ -1,16 +1,14 @@
 package net.codejava.spring.controller;
 
-import net.codejava.spring.dao.UserDAO;
+import net.codejava.spring.dao.PerfilDaoImpl;
 import net.codejava.spring.generic.AbstractHibernateDao;
+import net.codejava.spring.model.SeguridadPerfil;
 import net.codejava.spring.model.SeguridadUsuario;
 import net.codejava.spring.util.equifax.ConstantesUtil;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +20,9 @@ import javax.annotation.PostConstruct;
 public class UsuarioController extends AbstractHibernateDao<SeguridadUsuario> {
 
 	private static Logger	LOG	= Logger.getLogger(UsuarioController.class);
-
+	
+	@Autowired
+	private PerfilDaoImpl perfilDao;
 	
 	@PostConstruct
 	public void init() {
@@ -38,6 +38,14 @@ public class UsuarioController extends AbstractHibernateDao<SeguridadUsuario> {
 	List<SeguridadUsuario> listUsuario() {
 		return findAll();
 	}
+	
+	@RequestMapping(value = "/listPerfil.json", method = RequestMethod.GET)
+	public @ResponseBody
+	List<SeguridadPerfil> listPerfil() {
+		
+		return perfilDao.findAll();
+	}
+	
 
 	@RequestMapping("/layout")
 	public String getTodoPartialPage() {
@@ -62,4 +70,13 @@ public class UsuarioController extends AbstractHibernateDao<SeguridadUsuario> {
 		update(bean);
 	}
 
+	public PerfilDaoImpl getPerfilDao() {
+		return perfilDao;
+	}
+
+	public void setPerfilDao(PerfilDaoImpl perfilDao) {
+		this.perfilDao = perfilDao;
+	}
+
+	
 }

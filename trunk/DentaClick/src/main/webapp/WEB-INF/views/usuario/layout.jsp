@@ -10,8 +10,11 @@
 				<form ng-submit="add(bean)">
 					<div class="col-lg-8">
 						<input class="form-control" placeholder="Ingresa nombre" type="text" ng-model="bean.nomb" required min="1" />
-						<input class="form-control" placeholder="Ingresa correo" type="text" ng-model="bean.corre" required min="1" />
-						<input class="form-control" placeholder="Ingresa Perfil" type="text" ng-model="bean.fkPerfil.pkPerfil" required min="1" />
+						<input class="form-control" placeholder="Ingresa correo" type="text" ng-model="bean.pass" required min="1" />
+						<b>Perfiles:</b> <select ng-model="bean.fkPerfil.pkPerfil" id="personData">
+							<option value="">-- Seleccione Perfiles --</option>
+							<option data-ng-repeat="perfil in perfilList" value="{{perfil.pkPerfil}}">{{perfil.nomb}}</option>
+						</select><br>
 					</div>
 				</form>
 				<button class="btn btn-primary" ng-disabled="!bean" ng-hide="editMode" ng-click="add(bean)">Agregar Usuario</button>
@@ -35,7 +38,8 @@
 				</div>
 			</div>
 			<hr />
-			<div class="alert alert-info" style="width: 400px; margin-left: 100px;" ng-show="beanList.length == 0">No address book entry found</div>
+			<div class="alert alert-info" style="width: 400px; margin-left: 100px;" ng-show="beanList.length == 0">No address book entry
+				found</div>
 			beanList.length : {{beanList.length}}
 			<!-- Mostrar solo si hay data -->
 			<table class="table table-bordered table-striped" ng-show="beanList.length > 0">
@@ -45,9 +49,9 @@
 						<th style="text-align: center; width: 25px;">Borrar</th>
 						<th style="text-align: center; width: 25px;">Actualizar</th>
 						<th style="text-align: center;"><a href="" ng-click="reverse=!reverse;order('pkUsuario', reverse)">ID </a></th>
-						<th style="text-align: center;"><a href="" ng-click="reverse=!reverse;order('nomb', reverse)">CORREO </a></th>
-						<th style="text-align: center;"><a href="" ng-click="reverse=!reverse;order('corre', reverse)">CONTRASEÑA </a></th>
-						<th style="text-align: center;"><a href="" ng-click="reverse=!reverse;order('fkPerfil.pkPerfil', reverse)">CONTRASEÑA </a></th>
+						<th style="text-align: center;"><a href="" ng-click="reverse=!reverse;order('nomb', reverse)">NOMBRE </a></th>
+						<th style="text-align: center;"><a href="" ng-click="reverse=!reverse;order('pass', reverse)">PASS </a></th>
+						<th style="text-align: center;"><a href="" ng-click="reverse=!reverse;order('fkPerfil.nomb', reverse)">PERFIL</a></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,17 +65,11 @@
 						</td>
 						<td>{{bean.pkUsuario}}</td>
 						<td>{{bean.nomb}}</td>
-						<td>{{bean.corre}}</td>
-						<td>{{bean.fkPerfil.pkPerfil}}</td>
+						<td>{{bean.pass}}</td>
+						<td>{{bean.fkPerfil.nomb}}</td>
 					</tr>
 				</tbody>
 			</table>
-			<div data-ng-init="getPersonDataFromServer()">
-				<b>Perfil Data:</b> <select id="personData">
-					<option value="">-- Select Persons --</option>
-					<option data-ng-repeat="bean in beanList" value="{{bean.fkPerfil.pkPerfil}}">{{bean.fkPerfil.pkPerfil}}</option>
-				</select><br>
-			</div>
 		</div>
 		<!-- /.demo-content -->
 	</div>

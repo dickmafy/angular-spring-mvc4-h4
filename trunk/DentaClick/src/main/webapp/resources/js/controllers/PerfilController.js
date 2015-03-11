@@ -1,3 +1,9 @@
+var myApp = angular.module('myApp',[]);
+
+myApp.controller('PerfilController', ['$scope', function($scope) {
+  $scope.greeting = 'Hola!';
+}]);
+
 var PerfilController = function($scope, $http) {
 
 	$scope.editMode = false;
@@ -17,8 +23,6 @@ var PerfilController = function($scope, $http) {
 			$scope.setError('Error en List');
 		});;
 	};
-
-	
 
 	$scope.add = function(bean) {
 		$http.post('bean/add', bean).success(function(response) {

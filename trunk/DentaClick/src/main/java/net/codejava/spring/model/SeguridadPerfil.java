@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -40,16 +41,15 @@ public class SeguridadPerfil implements Serializable {
 	private Integer					esta;
 	private String					nomb;
 	
-	@XmlAttribute
-    @XmlTransient
+	/*
+	@XmlElement
 	@OneToMany(mappedBy = "fkPerfil")
 	private List<SeguridadUsuario>	seguridadUsuarioList;
-	
-	@XmlAttribute
-    @XmlTransient
+
+    @XmlElement
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "seguridadPerfil")
 	private SeguridadPersona		seguridadPersona;
-
+*/
 	public Long getPkPerfil() {
 		return pkPerfil;
 	}
@@ -74,23 +74,5 @@ public class SeguridadPerfil implements Serializable {
 		this.nomb = nomb;
 	}
 
-	public List<SeguridadUsuario> getSeguridadUsuarioList() {
-		return seguridadUsuarioList;
-	}
 
-	public void setSeguridadUsuarioList(List<SeguridadUsuario> seguridadUsuarioList) {
-		this.seguridadUsuarioList = seguridadUsuarioList;
-	}
-
-	public SeguridadPersona getSeguridadPersona() {
-		return seguridadPersona;
-	}
-
-	public void setSeguridadPersona(SeguridadPersona seguridadPersona) {
-		this.seguridadPersona = seguridadPersona;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 }

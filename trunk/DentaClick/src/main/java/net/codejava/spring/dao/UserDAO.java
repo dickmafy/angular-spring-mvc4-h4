@@ -2,8 +2,15 @@ package net.codejava.spring.dao;
 
 import java.util.List;
 
-public interface UserDAO {
-/*	public List<Usuario> list();
-	void deleteUsuario(Usuario o);
-	*/
+import org.springframework.stereotype.Service;
+
+import net.codejava.spring.generic.GenericDao;
+import net.codejava.spring.model.SeguridadUsuario;
+
+
+public interface UserDAO  {
+
+	public void test();
+	
+	
 }
