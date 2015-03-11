@@ -12,7 +12,7 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: TodoController
     });
     $routeProvider.when('/usuario', {
-        templateUrl: 'bean/layout',
+        templateUrl: 'usuario/layout',
         controller: UsuarioController
     });
     $routeProvider.when('/perfil', {

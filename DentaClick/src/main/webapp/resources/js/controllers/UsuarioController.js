@@ -4,10 +4,12 @@ var UsuarioController = function($scope, $http) {
 	$scope.position = '';
 	$scope.add = "UsuarioController";
 	
-	$scope.getPersonDataFromServer = function() {
-		$http.get('usuario/list.json')
+	
+	   
+	$scope.listPerfil = function() {
+		$http.get('usuario/listPerfil.json')
 		.success(function(data, status, headers, config) {
-        	$scope.personDatas = data;	        	
+        	$scope.perfilList = data;	        	
         })
         .error(function(data, status, headers, config) {
           // called asynchronously if an error occurs
@@ -15,6 +17,7 @@ var UsuarioController = function($scope, $http) {
         });		    
     };		
     
+ 
 
 	$scope.list = function() {
 		$http.get('usuario/list.json').success(function(response) {
@@ -97,4 +100,5 @@ var UsuarioController = function($scope, $http) {
 	    
 
 	$scope.list();
+	$scope.listPerfil();
 };

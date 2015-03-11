@@ -12,10 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	private UserDAO userDao;
-	
-	
 	@RequestMapping(value="/")
 	public ModelAndView index() {
 		//List<Usuario> listUsers = userDao.list();

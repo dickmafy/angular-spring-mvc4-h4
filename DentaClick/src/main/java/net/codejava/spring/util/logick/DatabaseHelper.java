@@ -4,13 +4,11 @@
  import java.io.PrintWriter;
  import java.io.StringWriter;
 
-import net.codejava.spring.dao.ProductoDAOImpl;
-
 import org.apache.log4j.Logger;
  
  public class DatabaseHelper
  {
-	private static final Logger LOG = Logger.getLogger(ProductoDAOImpl.class);
+	private static final Logger LOG = Logger.getLogger(DatabaseHelper.class);
 
    public static String getOracleError(Exception error)
    {
