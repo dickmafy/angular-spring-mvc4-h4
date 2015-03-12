@@ -1,6 +1,6 @@
 package net.codejava.spring.controller;
 
-import net.codejava.spring.generic.AbstractHibernateDao;
+import net.codejava.spring.generic.GenericDao;
 import net.codejava.spring.model.SeguridadPerfil;
 import net.codejava.spring.util.equifax.ConstantesUtil;
 
@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
 
 @Controller
 @RequestMapping("/bean")
-public class PerfilController extends AbstractHibernateDao<SeguridadPerfil> {
+public class PerfilController extends GenericDao<SeguridadPerfil> {
 
 	private static Logger			LOG	= Logger.getLogger(PerfilController.class);
 

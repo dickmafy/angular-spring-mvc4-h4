@@ -1,13 +1,10 @@
 var UsuarioController = function($scope, $http) {
-
 	$scope.editMode = false;
 	$scope.position = '';
-	$scope.add = "UsuarioController";
-	
-	
+	$scope.controller = "UsuarioController";
 	   
 	$scope.listPerfil = function() {
-		$http.get('usuario/listPerfil.json')
+		$http.post('usuario/listPerfil.json')
 		.success(function(data, status, headers, config) {
         	$scope.perfilList = data;	        	
         })
@@ -17,56 +14,52 @@ var UsuarioController = function($scope, $http) {
         });		    
     };		
     
- 
-
-	$scope.list = function() {
-		$http.get('usuario/list.json').success(function(response) {
+ 	$scope.list = function() {
+		$http.post('usuario/list.json')
+		.success(function(response) {
 			$scope.beanList = response;
-			
 		});
 	};
 
 	$scope.reset = function() {
 		$scope.bean.nomb = '';
+		$scope.bean.pass = '';
 		$scope.editMode = false;
 	};
 
 	$scope.add = function(bean) {
 		$http.post('usuario/add', bean).success(function(response) {
 			$scope.list();
-			$scope.bean.corre = '';
-			$scope.bean.nomb = '';
-			$scope.bean.pkPerfil = '';
 			console.log('Correcto' + bean);
-			$scope.setSuccess('exito al grabar.');
+			$scope.setSuccess('Se guardo con exito.');
 		}).error(function(response) {
 			console.log('Error' + response);
-			$scope.setError('error al ADD');
+			$scope.setError('error add');
 		});
+		$scope.reset();
 	};
 
 	$scope.update = function(bean) {
 		$http.post('usuario/update/', bean).success(
 				function(response) {
-					$scope.bean.corre = '';
-					$scope.bean.nomb = '';
-					$scope.bean.pkPerfil = '';
 					$scope.list();
 					$scope.editMode = false;
-					$scope.setSuccess('exito al actualizar.');
+					$scope.setSuccess('Se actualizo con exito.');
 				}).error(function(response) {
 			console.log(response);
 		});
+		$scope.reset();
 	};
 
 	$scope.delete = function(bean) {
 		$http.post('usuario/delete', bean).success(function(response) {
 			$scope.list();
 			console.log('Correcto Eliminado' + bean.id);
-			$scope.setSuccess('exito al borrar.');
+			$scope.setSuccess('Se borro con exito.');
 		}).error(function(response) {
 			console.log(response);
 		});
+		$scope.reset();
 	};
 
 	$scope.set = function(pos, bean) {

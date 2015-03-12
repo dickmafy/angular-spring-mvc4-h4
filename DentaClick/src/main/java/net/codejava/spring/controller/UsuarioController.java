@@ -1,7 +1,8 @@
 package net.codejava.spring.controller;
 
-import net.codejava.spring.dao.PerfilDaoImpl;
-import net.codejava.spring.generic.AbstractHibernateDao;
+import net.codejava.spring.dao.PerfilDao;
+import net.codejava.spring.generic.GenericDao;
+import net.codejava.spring.generic.GenericHibernate;
 import net.codejava.spring.model.SeguridadPerfil;
 import net.codejava.spring.model.SeguridadUsuario;
 import net.codejava.spring.util.equifax.ConstantesUtil;
@@ -11,41 +12,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import com.mysql.fabric.xmlrpc.base.Array;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 @Controller
 @RequestMapping("/usuario")
-public class UsuarioController extends AbstractHibernateDao<SeguridadUsuario> {
+public class UsuarioController {
 
-	private static Logger	LOG	= Logger.getLogger(UsuarioController.class);
-	
+	private static Logger		LOG	= Logger.getLogger(UsuarioController.class);
+
 	@Autowired
-	private PerfilDaoImpl perfilDao;
-	
+	private PerfilDao			perfilDao;
+
+	@Autowired
+	private GenericHibernate	dao;
+
 	@PostConstruct
 	public void init() {
 		LOG.info("UsuarioController - " + ConstantesUtil.POSTCONSTRUCT);
 	}
 
-	public UsuarioController() {
-		super(SeguridadUsuario.class);
-	}
-
-	@RequestMapping(value = "/list.json", method = RequestMethod.GET)
+	@RequestMapping(value = "/list.json")
 	public @ResponseBody
 	List<SeguridadUsuario> listUsuario() {
-		return findAll();
+		return dao.findAll(SeguridadUsuario.class);
 	}
-	
-	@RequestMapping(value = "/listPerfil.json", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/listPerfil.json")
 	public @ResponseBody
 	List<SeguridadPerfil> listPerfil() {
-		
-		return perfilDao.findAll();
+		List<SeguridadPerfil> list = new ArrayList<>();
+		list = dao.findAll(SeguridadPerfil.class);
+		return list;
+
 	}
-	
 
 	@RequestMapping("/layout")
 	public String getTodoPartialPage() {
@@ -55,28 +59,27 @@ public class UsuarioController extends AbstractHibernateDao<SeguridadUsuario> {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public @ResponseBody
 	void insertUsuario(@RequestBody SeguridadUsuario bean) {
-		save(bean);
+		dao.save(bean);
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody
 	void deleteUsuario(@RequestBody SeguridadUsuario bean) {
-		delete(bean);
+		dao.delete(bean);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody
 	void updateUsuario(@RequestBody SeguridadUsuario bean) {
-		update(bean);
+		dao.saveOrUpdate(bean);
 	}
 
-	public PerfilDaoImpl getPerfilDao() {
+	public PerfilDao getPerfilDao() {
 		return perfilDao;
 	}
 
-	public void setPerfilDao(PerfilDaoImpl perfilDao) {
+	public void setPerfilDao(PerfilDao perfilDao) {
 		this.perfilDao = perfilDao;
 	}
 
-	
 }
