@@ -1,16 +1,14 @@
 package net.codejava.spring.dao;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import net.codejava.spring.generic.GenericDao;
 import net.codejava.spring.model.SeguridadUsuario;
 
 
-public interface UserDAO  {
+public class UsuarioDao extends GenericDao<SeguridadUsuario>  {
 
-	public void test();
-	
+	public UsuarioDao() {
+		super(SeguridadUsuario.class);
+	}
+		
 	
 }
