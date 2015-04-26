@@ -31,6 +31,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
  * @author DIEGO
  */
 @Entity
+@Table
 @XmlRootElement
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL) 
 public class SeguridadPerfil implements Serializable {
@@ -38,7 +39,9 @@ public class SeguridadPerfil implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long					pkPerfil;
+	@Column
 	private Integer					esta;
+	@Column
 	private String					nomb;
 	
 	/*

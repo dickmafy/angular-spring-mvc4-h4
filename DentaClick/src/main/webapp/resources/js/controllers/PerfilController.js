@@ -1,9 +1,3 @@
-var myApp = angular.module('myApp',[]);
-
-myApp.controller('PerfilController', ['$scope', function($scope) {
-  $scope.greeting = 'Hola!';
-}]);
-
 var PerfilController = function($scope, $http) {
 
 	$scope.editMode = false;
@@ -16,9 +10,10 @@ var PerfilController = function($scope, $http) {
 	};
 	
 	$scope.list = function() {
-		$http.get('bean/list.json').success(function(response) {
+		$http.post('bean/list').success(function(response) {
 			$scope.beanList = response;
 			$scope.reset();
+			$scope.setSuccess('Listando perfiles..');
 		}).error(function(response) {
 			$scope.setError('Error en List');
 		});;

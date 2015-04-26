@@ -3,6 +3,15 @@ var UsuarioController = function($scope, $http) {
 	$scope.position = '';
 	$scope.controller = "UsuarioController";
 	   
+		
+    
+ 	$scope.list = function() {
+		$http.post('usuario/list.json')
+		.success(function(response) {
+			$scope.beanList = response;
+		});
+	};
+	
 	$scope.listPerfil = function() {
 		$http.post('usuario/listPerfil.json')
 		.success(function(data, status, headers, config) {
@@ -12,14 +21,8 @@ var UsuarioController = function($scope, $http) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
         });		    
-    };		
+    };	
     
- 	$scope.list = function() {
-		$http.post('usuario/list.json')
-		.success(function(response) {
-			$scope.beanList = response;
-		});
-	};
 
 	$scope.reset = function() {
 		$scope.bean.nomb = '';

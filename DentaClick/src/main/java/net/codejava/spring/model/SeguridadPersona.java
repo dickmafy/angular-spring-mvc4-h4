@@ -8,31 +8,44 @@ package net.codejava.spring.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  *
  * @author DIEGO
  */
 @Entity
+@Table
+@XmlRootElement
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class SeguridadPersona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     private Long pkPersona;
+    @Column
     private String apellMate;
+    @Column
     private String apellpate;
+    @Column
     private String codigoid;
+    @Column
     private Integer estaCivi;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechModi;
@@ -42,8 +55,11 @@ public class SeguridadPersona implements Serializable {
     private Date fechRegi;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     private BigDecimal fkCompany;
+    @Column
     private Boolean gene;
+    @Column
     private String nomb;
+    @Column
     private String ubigNaci;
     
     @XmlAttribute

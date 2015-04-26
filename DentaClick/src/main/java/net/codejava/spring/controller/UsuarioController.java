@@ -1,7 +1,6 @@
 package net.codejava.spring.controller;
 
-import net.codejava.spring.dao.PerfilDao;
-import net.codejava.spring.generic.GenericDao;
+//import net.codejava.spring.dao.PerfilDao;
 import net.codejava.spring.generic.GenericHibernate;
 import net.codejava.spring.model.SeguridadPerfil;
 import net.codejava.spring.model.SeguridadUsuario;
@@ -11,8 +10,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import com.mysql.fabric.xmlrpc.base.Array;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +22,8 @@ public class UsuarioController {
 
 	private static Logger		LOG	= Logger.getLogger(UsuarioController.class);
 
-	@Autowired
-	private PerfilDao			perfilDao;
+	//@Autowired
+	//private PerfilDao			perfilDao;
 
 	@Autowired
 	private GenericHibernate	dao;
@@ -41,14 +38,16 @@ public class UsuarioController {
 	List<SeguridadUsuario> listUsuario() {
 		return dao.findAll(SeguridadUsuario.class);
 	}
-
+ 
 	@RequestMapping(value = "/listPerfil.json")
 	public @ResponseBody
-	List<SeguridadPerfil> listPerfil() {
-		List<SeguridadPerfil> list = new ArrayList<>();
+	List<SeguridadPerfil> listPerfil() { 
+		List<SeguridadPerfil> list = new ArrayList<SeguridadPerfil>();
 		list = dao.findAll(SeguridadPerfil.class);
+		
+		
+		
 		return list;
-
 	}
 
 	@RequestMapping("/layout")
@@ -74,12 +73,13 @@ public class UsuarioController {
 		dao.saveOrUpdate(bean);
 	}
 
+	/*
 	public PerfilDao getPerfilDao() {
 		return perfilDao;
 	}
 
 	public void setPerfilDao(PerfilDao perfilDao) {
 		this.perfilDao = perfilDao;
-	}
+	}*/
 
 }
