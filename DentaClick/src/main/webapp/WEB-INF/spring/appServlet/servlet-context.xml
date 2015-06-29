@@ -32,19 +32,29 @@
 		@Service – Indicates a Service component in the business layer.
 		@Controller – Indicates a controller component in the presentation layer.
 		-->
-	<context:component-scan base-package="net.codejava.spring" />
+   	<context:component-scan base-package="net.codejava.spring" />
 	
-	
+	<!--  MYSQL 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/dentalclick"/>
         <property name="username" value="root"/>
         <property name="password" value=""/>
     </bean>	
+    -->
+    <!-- POSTGRES 9.4 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/DentalClick"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="root"/>
+    </bean>	
+    
+    	
     
     <bean id="sessionFactory"
         class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+         <property name="dataSource" ref="dataSource" />
         <!--(*h1) Escanea las entidad de Hibernbate -->
         <property name="packagesToScan" value="net.codejava.spring.model" />
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
